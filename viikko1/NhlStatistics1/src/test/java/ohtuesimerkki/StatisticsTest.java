@@ -60,6 +60,6 @@ public class StatisticsTest {
     
     @Test
     public void topScorersGivesTheBestScorer() {
-        assertEquals("Gretzky", stats.topScorers(1));
+        assertEquals("Gretzky", stats.topScorers(1).get(0).getName());
     }
 }
