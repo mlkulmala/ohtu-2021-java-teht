@@ -45,7 +45,7 @@ public class StatisticsTest {
     
     @Test
     public void playerCanBeFoundByName() {
-        assertEquals("Kurri", stats.search("Kurri"));
+        assertEquals("Kurri", stats.search("Kurri").getName());
     }
     
     @Test
@@ -60,6 +60,6 @@ public class StatisticsTest {
     
     @Test
     public void topScorersGivesTheBestScorer() {
-        assertEquals("Lemieux", stats.topScorers(1));
+        assertEquals("Gretzky", stats.topScorers(1));
     }
 }
