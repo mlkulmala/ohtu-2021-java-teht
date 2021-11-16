@@ -49,6 +49,11 @@ public class StatisticsTest {
     }
     
     @Test
+    public void nonExistingPlayerCannotBeFoundByName() {
+        assertEquals(null, stats.search("Kulmala"));
+    }
+    
+    @Test
     public void teamHasRightNumberOfPlayers() {
         assertEquals(3, stats.team("EDM").size());
     }
