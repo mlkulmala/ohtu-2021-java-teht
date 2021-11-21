@@ -45,7 +45,7 @@ public class Player implements Comparable<Player> {
     public int compareTo(Player player) {
         int points = this.goals + this.assists;
         int comparablePoints = player.getGoals() + player.getAssists();
-        return points - comparablePoints;
+        return Integer.compare(points, comparablePoints);
     }
       
 }
