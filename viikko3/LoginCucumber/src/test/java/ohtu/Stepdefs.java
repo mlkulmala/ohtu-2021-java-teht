@@ -45,10 +45,10 @@ public class Stepdefs {
        app.run();
     }    
     
-    
 
     @Then("system will respond with {string}")
     public void systemWillRespondWith(String expectedOutput) {
+        System.out.println("ohjelma tulosti " + io.getPrints());
         assertTrue(io.getPrints().contains(expectedOutput));
     }    
 
