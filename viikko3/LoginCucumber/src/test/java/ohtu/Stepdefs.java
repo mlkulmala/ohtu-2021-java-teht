@@ -44,6 +44,8 @@ public class Stepdefs {
        app = new App(io, auth);
        app.run();
     }    
+    
+    
 
     @Then("system will respond with {string}")
     public void systemWillRespondWith(String expectedOutput) {
