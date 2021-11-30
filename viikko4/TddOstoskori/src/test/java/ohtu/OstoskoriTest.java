@@ -159,6 +159,6 @@ public class OstoskoriTest {
         
         assertEquals(0, kori.tavaroitaKorissa());
         assertEquals(0, kori.hinta());
-//        assertEquals(0, ostokset.size());
+        assertEquals(0, ostokset.size());
     }
 }
