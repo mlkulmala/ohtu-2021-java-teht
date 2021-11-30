@@ -1,11 +1,13 @@
 package ohtu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class Ostoskori {
     
-    ArrayList<Ostos> ostokset = new ArrayList<>();
+    HashMap<Tuote,Ostos> ostoskori = new HashMap<>();
  
     public int tavaroitaKorissa() {
         // kertoo korissa olevien tavaroiden lukumäärän
@@ -14,7 +16,7 @@ public class Ostoskori {
         // jos korissa on 1 kpl tuotetta "maito" ja 1 kpl tuotetta "juusto", 
         //   tulee metodin palauttaa 2   
         int yhteensa = 0;
-        for (Ostos ostos : ostokset) {
+        for (Ostos ostos : ostoskori.values()) {
             yhteensa += ostos.lukumaara();
         }
         return yhteensa;
@@ -22,14 +24,20 @@ public class Ostoskori {
  
     public int hinta() {
         int hinta = 0;
-        for (Ostos ostos : ostokset) {
+        for (Ostos ostos : ostoskori.values()) {
             hinta += ostos.hinta();
         }
         return hinta;
     }
  
     public void lisaaTuote(Tuote lisattava) {
-        ostokset.add(new Ostos(lisattava));
+        if (ostoskori.containsKey(lisattava)) {
+            Ostos paivitettava = ostoskori.get(lisattava);
+            paivitettava.muutaLukumaaraa(1);
+        } else {
+            ostoskori.put(lisattava, new Ostos(lisattava));
+        }
+        
     }
  
     public void poista(Tuote poistettava) {
@@ -37,6 +45,7 @@ public class Ostoskori {
     }
  
     public List<Ostos> ostokset() {
+        List<Ostos> ostokset = new ArrayList<Ostos>(ostoskori.values());
         return ostokset;
     }
  
