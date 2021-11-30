@@ -41,7 +41,10 @@ public class Ostoskori {
     }
  
     public void poista(Tuote poistettava) {
-        // poistaa tuotteen
+        if (ostoskori.containsKey(poistettava)) {
+            Ostos paivitettava = ostoskori.get(poistettava);
+            paivitettava.muutaLukumaaraa(-1);
+        } 
     }
  
     public List<Ostos> ostokset() {
