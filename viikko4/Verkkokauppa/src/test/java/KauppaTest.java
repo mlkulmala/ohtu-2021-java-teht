@@ -137,5 +137,57 @@ public class KauppaTest {
         verify(pankki).tilisiirto(eq("maija"), eq(42), eq("34343"), eq("33333-44455"), eq(7));
     }
     
+    @Test
+    public void jokaMaksutapahtumaSaaOmanViitenumeron() {
+        when(viite.uusi())
+            .thenReturn(1)
+            .thenReturn(2)
+            .thenReturn(3);
+        
+        when(varasto.saldo(1)).thenReturn(5); 
+        when(varasto.saldo(2)).thenReturn(5); 
+
+        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
+        when(varasto.haeTuote(2)).thenReturn(new Tuote(2, "leipa", 7));
+        
+        // tehd‰‰n ostokset
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);     // ostetaan tuotetta numero 1 eli maitoa
+        k.tilimaksu("lasse", "12121");
+        
+        verify(pankki).tilisiirto(anyString(), eq(1), anyString(), anyString(), anyInt());
+        
+        // tehd‰‰n ostokset
+        k.aloitaAsiointi();
+        k.lisaaKoriin(2);     // ostetaan tuotetta numero 2 eli leip‰
+        k.tilimaksu("maija", "34343");
+        verify(pankki).tilisiirto(anyString(), eq(2), anyString(), anyString(), anyInt());
+        
+        // tehd‰‰n ostokset
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);     // ostetaan tuotetta numero 2 eli leip‰
+        k.tilimaksu("armi", "67676");
+        verify(pankki).tilisiirto(anyString(), eq(3), anyString(), anyString(), anyInt());
+    }
+    
+    @Test
+    public void poistoOstoskorista() {
+        when(varasto.saldo(1)).thenReturn(5); 
+        when(varasto.saldo(2)).thenReturn(5); 
+
+        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
+        when(varasto.haeTuote(2)).thenReturn(new Tuote(2, "leipa", 7));
+        
+        // tehd‰‰n ostokset
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);     // ostetaan tuotetta numero 1 eli maitoa
+        k.lisaaKoriin(2);     // ostetaan viel‰ leip‰‰
+        k.poistaKorista(1);
+        k.tilimaksu("kalle", "99999");
+        
+        verify(pankki).tilisiirto(eq("kalle"), eq(42), eq("99999"), eq("33333-44455"), eq(7));
+    }
+    
     
 }
+ 
