@@ -43,7 +43,11 @@ public class Ostoskori {
     public void poista(Tuote poistettava) {
         if (ostoskori.containsKey(poistettava)) {
             Ostos paivitettava = ostoskori.get(poistettava);
-            paivitettava.muutaLukumaaraa(-1);
+            if (paivitettava.lukumaara() <= 1) {
+                ostoskori.remove(poistettava);
+            } else {
+                paivitettava.muutaLukumaaraa(-1);
+            }   
         } 
     }
  
@@ -53,6 +57,6 @@ public class Ostoskori {
     }
  
     public void tyhjenna() {
-        // tyhjentää korin
+        ostoskori = new HashMap<>();
     }
 }
