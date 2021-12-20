@@ -1,4 +1,4 @@
-Ryhmätyö ohjelmistokehityksessä
+## Ryhmätyö ohjelmistokehityksessä
 
 Ohjelmistotuotanto voidaan jakaa eri vaiheisiin: vaatimusmäärittelyyn, suunnitteluun, toteutukseen, testaukseen ja ylläpitoon. Eri vaiheisiin vaaditaan erilaisia taitoja, minkä vuoksi ohjelmistoprojektit toteutetaan yleensä ryhmätyönä. Ryhmätyöskentelyssä kommunikointi on avainasemassa.
 Extreme Programming (XP) painottaa paljon asiakkaan kanssa kommunikointia ja ryhmätyöskentelyä. Esimerkiksi pariohjelmointi suuressa roolissa XP:ssä. Myös ryhmän sisäinen kommunikointi tärkeää, jotta päästään parhaaseen lopputulokseen. 
